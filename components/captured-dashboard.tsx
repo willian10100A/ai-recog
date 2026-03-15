@@ -55,27 +55,27 @@ export function CapturedDashboard() {
     }
   }
 
-  // Load captures
-  const loadCaptures = async (person: Person) => {
-    setViewingPerson(person)
-    setLoadingCaptures(true)
-    setCaptures([])
+  // // Load captures
+  // const loadCaptures = async (person: Person) => {
+  //   setViewingPerson(person)
+  //   setLoadingCaptures(true)
+  //   setCaptures([])
 
-    try {
-      const res = await fetch(`/api/persons/${person.id}/captures`)
-      if (!res.ok) throw new Error('Failed to fetch captures')
-      const data: Capture[] = await res.json()
+  //   try {
+  //     const res = await fetch(`/api/persons/${person.id}/captures`)
+  //     if (!res.ok) throw new Error('Failed to fetch captures')
+  //     const data: Capture[] = await res.json()
 
-      const getTime = (d: string) => new Date(d).getTime() || 0
-      const sorted = data.sort((a, b) => getTime(b.created_at) - getTime(a.created_at))
-      setCaptures(sorted)
-    } catch (err) {
-      console.error('Error loading captures:', err)
-      toast.error('Failed to load recognition captures')
-    } finally {
-      setLoadingCaptures(false)
-    }
-  }
+  //     const getTime = (d: string) => new Date(d).getTime() || 0
+  //     const sorted = data.sort((a, b) => getTime(b.created_at) - getTime(a.created_at))
+  //     setCaptures(sorted)
+  //   } catch (err) {
+  //     console.error('Error loading captures:', err)
+  //     toast.error('Failed to load recognition captures')
+  //   } finally {
+  //     setLoadingCaptures(false)
+  //   }
+  // }
 
   // Format timestamp
   const formatDate = (dateStr: string) => {
@@ -139,7 +139,7 @@ export function CapturedDashboard() {
               person={person}
               onEdit={() => { /* add edit logic if needed */ }}
               onDelete={() => handleDelete(person)}
-              onViewPhoto={() => loadCaptures(person)}
+              // onViewPhoto={() => loadCaptures(person)}
             />
           ))}
         </div>
